@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-ui {
+    @apply font-geist;
+  }
+
+  .font-brand {
+    @apply font-rethink;
+  }
+}
+
+
+
+@layer base {
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 200 30% 95%;
+    --card: 210 15% 6%;
+    --card-foreground: 200 30% 95%;
+    --popover: 210 15% 6%;
+    --popover-foreground: 200 30% 95%;
+    --primary: 199 89% 60%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 210 10% 10%;
+    --secondary-foreground: 200 20% 88%;
+    --muted: 210 10% 10%;
+    --muted-foreground: 200 10% 50%;
+    --accent: 199 89% 60%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 10% 14%;
+    --input: 210 10% 14%;
+    --ring: 199 89% 60%;
+    --chart-1: 199 89% 60%;
+    --chart-2: 190 80% 50%;
+    --chart-3: 210 75% 55%;
+    --chart-4: 185 70% 50%;
+    --chart-5: 220 65% 55%;
+    --radius: 0.75rem;
+    --neon-blue: 199 89% 60%;
+    --neon-glow: 199 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Scanline overlay effect */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(0, 0, 0, 0.08) 4px);
+}
+
+/* Neon glow text */
+.neon-text {
+  text-shadow:
+    0 0 7px hsl(199 89% 60%),
+    0 0 10px hsl(199 89% 60%),
+    0 0 21px hsl(199 89% 60%),
+    0 0 42px hsl(199 100% 70%),
+    0 0 82px hsl(199 100% 70%);
+}
+
+.neon-text-subtle {
+  text-shadow:
+    0 0 5px hsl(199 89% 60% / 0.5),
+    0 0 10px hsl(199 89% 60% / 0.3);
+}
+
+/* Neon box glow */
+.neon-border {
+  box-shadow:
+    0 0 5px hsl(199 89% 60% / 0.3),
+    0 0 10px hsl(199 89% 60% / 0.2),
+    inset 0 0 5px hsl(199 89% 60% / 0.1);
+}
+
+/* Floating hearts animation */
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    filter: blur(20px);
+  }
+
+  50% {
+    opacity: 0.8;
+    filter: blur(30px);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: hsl(199 89% 60%);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float-up linear forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0 0% 2%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(199 89% 60% / 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(199 89% 60% / 0.8);
+}
